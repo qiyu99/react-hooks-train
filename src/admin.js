@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Row, Col, Button } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -7,7 +7,9 @@ import {
   // VideoCameraOutlined,
   // UploadOutlined,
 } from '@ant-design/icons';
-import NavLeft from './components/NavLeft'
+import NavLeft from './components/NavLeft';
+import Util from './utils';
+import './style/common.less';
 const { Header, Sider, Content } = Layout;
 
 /**
@@ -60,33 +62,50 @@ const { Header, Sider, Content } = Layout;
  */
 export default function Admin () {
   const [collapsed, setCollapsed] = useState(false);
-
+  const [userName] = useState('埼玉');
   return (
-    <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Layout className="container">
+      <Sider className="nav-left" trigger={null} collapsible collapsed={collapsed}>
         <NavLeft />
       </Sider>
-      <Layout className="site-layout">
+      <Layout className="site-layout main">
         <Header className="site-layout-background" style={{ padding: 0 }}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })}
+          <Row className="header-top">
+            <Col span="1">
+              {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                className: 'trigger',
+                onClick: () => setCollapsed(!collapsed),
+                style:{padding:'11px 8px'},
+              })}
+            </Col>
+            <Col span="15"></Col>
+            <Col span="2" style={{textAlign: "center"}}><Today /></Col>
+            <Col span="4" style={{paddingRight:10,textAlign:"right"}}>
+              {`你好，${userName}`}
+            </Col>
+            <Col span="2"><Button type="link" danger style={{marginLeft: 10}}>退出</Button></Col>
+          </Row>
+          <Row className="breadcrumb">
+
+          </Row>
         </Header>
         <Content className="site-layout-background" style={{
-          margin: '24px 16px',
-          padding: 24,
+          margin: '12px 8px',
+          padding: 10,
           minHeight: 280,
         }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            Bill is a cat.
-          </div>
+          Bill is a cat.
         </Content>
       </Layout>
     </Layout>
+  )
+}
+
+function Today () {
+  let today = Util.formateDate(new Date());
+  const [sysTime] = useState(today);//, setSysTime
+
+  return (
+  <span>{sysTime}</span>
   )
 }
