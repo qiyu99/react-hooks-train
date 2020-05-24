@@ -10,6 +10,7 @@ import {
 import NavLeft from './components/NavLeft';
 import Util from './utils';
 import './style/common.less';
+
 const { Header, Sider, Content } = Layout;
 
 /**
@@ -60,7 +61,7 @@ const { Header, Sider, Content } = Layout;
 /**
  * 使用函数定义组件
  */
-export default function Admin () {
+export default function Admin (props) {
   const [collapsed, setCollapsed] = useState(false);
   const [userName] = useState('埼玉');
   return (
@@ -78,8 +79,8 @@ export default function Admin () {
                 style:{padding:'11px 8px'},
               })}
             </Col>
-            <Col span="15"></Col>
-            <Col span="2" style={{textAlign: "center"}}><Today /></Col>
+            <Col span="14"></Col>
+            <Col span="3" style={{textAlign: "right"}}><Today /></Col>
             <Col span="4" style={{paddingRight:10,textAlign:"right"}}>
               {`你好，${userName}`}
             </Col>
@@ -89,12 +90,8 @@ export default function Admin () {
 
           </Row>
         </Header>
-        <Content className="site-layout-background" style={{
-          margin: '12px 8px',
-          padding: 10,
-          minHeight: 280,
-        }}>
-          Bill is a cat.
+        <Content className="content">
+          {props.children}
         </Content>
       </Layout>
     </Layout>

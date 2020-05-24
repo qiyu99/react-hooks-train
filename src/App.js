@@ -1,11 +1,10 @@
 import React from 'react';
-import Admin from './admin';
 import './App.css';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <Admin />
+      {props.children}
     </div>
   );
 }

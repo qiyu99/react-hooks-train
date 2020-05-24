@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
 import menuList from '../../resource/menuConfig';
 import './index.less';
@@ -53,7 +54,7 @@ function renderMenu (data) {
     if(!item.children){
       return (
         <Menu.Item title={item.title} key={item.key}>
-          {item.title}
+          <NavLink to={item.key}>{item.title}</NavLink>
         </Menu.Item>
       )
     }
