@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import 'dayjs/locale/zh-cn'
 import './index.css';
 import Router from './router';
+import {Provider} from 'react-redux';
+import configureStore from './redux/store/configureStore';
 import * as serviceWorker from './serviceWorker';
 
+const store = configureStore();
+
 ReactDOM.render(
-  <Router />,
+  <Provider store={store}>
+    <Router />
+  </Provider>,
   document.getElementById('root')
 );
 

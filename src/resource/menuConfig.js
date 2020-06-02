@@ -12,8 +12,8 @@ const menuList = [
         key: '/admin/ui/buttons',
       },
       {
-        title: '弹窗',
-        key: '/admin/ui/modals',
+        title: '提示框',
+        key: '/admin/ui/message',
       },
       {
         title: 'Loading',
@@ -23,7 +23,27 @@ const menuList = [
   },
   {
     title: '表单',
-    key: '/admin/form'
+    key: '/admin/form',
+    children: [
+      {
+        title: '登录',
+        key: '/admin/form/login'
+      }
+    ]
+  },
+  {
+    title: '表格',
+    key: '/admin/table',
+    children: [
+      {
+        title: '基础表格',
+        key: '/admin/table/basic'
+      },
+      {
+        title: '高级表格',
+        key: '/admin/table/high'
+      }
+    ]
   },
   {
     title: '图表',
